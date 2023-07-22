@@ -1002,11 +1002,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/clem/Desktop/dev/METHODEJ_/METHODEJ-BACK-V2/methodej/methodej.csproj",
+      "projectUniqueName": "/Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/methodej.csproj",
       "projectName": "methodej",
-      "projectPath": "/Users/clem/Desktop/dev/METHODEJ_/METHODEJ-BACK-V2/methodej/methodej.csproj",
+      "projectPath": "/Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/methodej.csproj",
       "packagesPath": "/Users/clem/.nuget/packages/",
-      "outputPath": "/Users/clem/Desktop/dev/METHODEJ_/METHODEJ-BACK-V2/methodej/obj/",
+      "outputPath": "/Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/clem/.nuget/NuGet/NuGet.Config"
