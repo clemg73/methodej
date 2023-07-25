@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/METHODEJ-BACK-V2/methodej/bin/Debug/net7.0/methodej.dll",
+            "program": "${workspaceFolder}/methodej_back_v2/methodej/bin/Debug/net7.0/methodej.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/METHODEJ-BACK-V2/methodej",
+            "cwd": "${workspaceFolder}/methodej_back_v2/methodej",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {
