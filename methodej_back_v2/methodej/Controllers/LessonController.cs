@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using methodej.Data;
 using methodej.Models;
+using methodej.DTOs;
 
 namespace methodej.Controllers
 {
@@ -14,9 +10,9 @@ namespace methodej.Controllers
     [ApiController]
     public class LessonController : ControllerBase
     {
-        private readonly methodejDBContext _context;
+        private readonly MethodejDBContext _context;
 
-        public LessonController(methodejDBContext context)
+        public LessonController(MethodejDBContext context)
         {
             _context = context;
         }
@@ -24,20 +20,12 @@ namespace methodej.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Lesson>>> GetLessons()
         {
-          if (_context.Lessons == null)
-          {
-              return NotFound();
-          }
             return await _context.Lessons.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Lesson>> GetLesson(int id)
         {
-          if (_context.Lessons == null)
-          {
-              return NotFound();
-          }
             var lesson = await _context.Lessons.FindAsync(id);
 
             if (lesson == null)
@@ -78,16 +66,35 @@ namespace methodej.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Lesson>> PostLesson(Lesson lesson)
+        public async Task<ActionResult> PostLesson(CreateLessonDTO lessonInput)
         {
-          if (_context.Lessons == null)
-          {
-              return Problem("Entity set 'methodejDBContext.Lessons'  is null.");
-          }
+            Lesson lesson = new Lesson();
+            lesson.Name = lessonInput.Name;
+            lesson.LogoName = lessonInput.LogoName;
+            
+            var user = await _context.Users.Where(c => c.UserId.Equals(lessonInput.UserId)).FirstOrDefaultAsync();
+            if (user == null)
+            {
+                return BadRequest("User not found");
+            }
+            lesson.User = user;
+
+            var matter = await _context.Matters.Where(c => c.MatterId.Equals(lessonInput.MatterId)).FirstOrDefaultAsync();
+            if (matter == null)
+            {
+                return BadRequest("Matter not found");
+            }
+            lesson.Matter = matter;
+
+            for (int i = 0; i < lessonInput.Revisions?.Count; i++)
+            {
+                Revision? rev = lessonInput.Revisions[i];
+                _context.Revisions.Add(rev);
+            }
+
             _context.Lessons.Add(lesson);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetLesson", new { id = lesson.LessonId }, lesson);
+            return Ok(lesson.LessonId);
         }
 
         [HttpDelete("{id}")]

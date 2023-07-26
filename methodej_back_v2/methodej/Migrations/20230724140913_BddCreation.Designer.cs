@@ -11,7 +11,7 @@ using methodej.Data;
 
 namespace methodej.Migrations
 {
-    [DbContext(typeof(methodejDBContext))]
+    [DbContext(typeof(MethodejDBContext))]
     [Migration("20230724140913_BddCreation")]
     partial class BddCreation
     {

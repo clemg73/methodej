@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<methodejDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("localConnection")));
+builder.Services.AddDbContext<MethodejDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("localConnection")));
 
 var app = builder.Build();
 

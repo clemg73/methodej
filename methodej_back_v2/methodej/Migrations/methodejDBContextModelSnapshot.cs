@@ -10,8 +10,8 @@ using methodej.Data;
 
 namespace methodej.Migrations
 {
-    [DbContext(typeof(methodejDBContext))]
-    partial class methodejDBContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(MethodejDBContext))]
+    partial class MethodejDBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

@@ -15,7 +15,6 @@ namespace methodej.Models
         [Column("lsn_planned_date", TypeName = "date")]
         public DateTime? PlannedDate { get; set; }
 
-        [Required]
         [Column("lsn_realized_date", TypeName = "date")]
         public DateTime? RealizedDate { get; set; }
 
