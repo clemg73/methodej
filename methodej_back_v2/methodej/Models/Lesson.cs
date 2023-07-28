@@ -19,7 +19,7 @@ namespace methodej.Models
 
         [Required]
         [Column("lsn_matter")]
-        public Matter? Matter { get; set; }
+        public string? Matter { get; set; }
 
         [Required]
         [Column("lsn_user")]

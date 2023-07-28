@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using methodej.Data;
 
@@ -11,9 +12,11 @@ using methodej.Data;
 namespace methodej.Migrations
 {
     [DbContext(typeof(MethodejDBContext))]
-    partial class MethodejDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230726164352_removeMatterObj")]
+    partial class removeMatterObj
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

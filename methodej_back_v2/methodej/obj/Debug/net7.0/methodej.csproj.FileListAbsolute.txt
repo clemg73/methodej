@@ -1,5 +1,4 @@
 /Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/bin/Debug/net7.0/appsettings.Development.json
-/Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/bin/Debug/net7.0/appsettings.json
 /Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/bin/Debug/net7.0/methodej
 /Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/bin/Debug/net7.0/methodej.deps.json
 /Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/bin/Debug/net7.0/methodej.runtimeconfig.json
@@ -277,3 +276,4 @@
 /Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/obj/Debug/net7.0/methodej.pdb
 /Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/obj/Debug/net7.0/methodej.genruntimeconfig.cache
 /Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/obj/Debug/net7.0/ref/methodej.dll
+/Users/clem/Desktop/dev/METHODEJ_/methodej_back_v2/methodej/bin/Debug/net7.0/appsettings.json

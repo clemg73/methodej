@@ -12,7 +12,6 @@ namespace methodej.Data
         public MethodejDBContext(DbContextOptions<MethodejDBContext> options): base(options){}
 
         public virtual DbSet<Lesson> Lessons { get; set; } = null!;
-        public virtual DbSet<Matter> Matters { get; set; } = null!;
         public virtual DbSet<Revision> Revisions { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
