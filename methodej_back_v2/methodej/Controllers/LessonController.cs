@@ -39,13 +39,13 @@ namespace methodej.Controllers
         [HttpGet("user/{id}")]
         public async Task<ActionResult<IEnumerable<Lesson>>> GetLessonsByUserId(int id)
         {
-            return await _context.Lessons.Include(l => l.Revisions).Where(c => c.User.UserId.Equals(id)).ToListAsync();
+            return await _context.Lessons.Include(l => l.Revisions).Where(c => c.User!.UserId.Equals(id)).ToListAsync();
         }
 
         [HttpGet("user/{id}/limit")]
         public async Task<ActionResult<IEnumerable<Lesson>>> GetLessonsByUserIdLimit(int id)
         {
-            return await _context.Lessons.Include(l => l.Revisions).Where(c => c.User.UserId.Equals(id)).Where(lesson => lesson.Revisions.Any(revision =>
+            return await _context.Lessons.Include(l => l.Revisions).Where(c => c.User!.UserId.Equals(id)).Where(lesson => lesson.Revisions!.Any(revision =>
                 revision.PlannedDate >= DateTime.Today.AddMonths(-3) &&
                 revision.PlannedDate <= DateTime.Today.AddMonths(3)
             )).ToListAsync();
@@ -54,7 +54,7 @@ namespace methodej.Controllers
         [HttpGet("user/{id}/countCreatedLessonCurrentMonth")]
         public async Task<ActionResult<int>> countCreatedLessonCurrentMonth(int id)
         {
-            return await _context.Lessons.Where(c => c.User.UserId.Equals(id)).Where(d => d.CreationDate.Month.Equals(DateTime.Now.Month)).CountAsync();
+            return await _context.Lessons.Where(c => c.User!.UserId.Equals(id)).Where(d => d.CreationDate.Month.Equals(DateTime.Now.Month)).CountAsync();
         }
 
         //Pour reporter une révision, on affiche un calendrier du moins avec des pastilles pour montrer quels jour on le plus de cours ect
@@ -66,12 +66,12 @@ namespace methodej.Controllers
             {
                 nombres.Add(0);
             }
-            await _context.Lessons.Include(l => l.Revisions).Where(c => c.User.UserId.Equals(id)).Where(lesson => lesson.Revisions.Any(revision =>
-                (revision.PlannedDate ?? new DateTime()).Year == date.Year && (revision.PlannedDate ?? new DateTime()).Month == date.Month && (revision.PlannedDate ?? new DateTime()).Day >= date.Day
+            await _context.Lessons.Include(l => l.Revisions).Where(c => c.User!.UserId.Equals(id)).Where(lesson => lesson.Revisions!.Any(revision =>
+                revision.PlannedDate.Year == date.Year && revision.PlannedDate.Month == date.Month && revision.PlannedDate.Day >= date.Day
             )).ForEachAsync(less=>{
-                foreach (Revision rev in less.Revisions)
+                foreach (Revision rev in less.Revisions!)
                 {
-                    nombres[(rev.PlannedDate ?? new DateTime()).Day]++;
+                    nombres[rev.PlannedDate.Day]++;
                 }
             });
             return nombres;
@@ -88,12 +88,12 @@ namespace methodej.Controllers
             {
                 nombres.Add(0);
             }
-            await _context.Lessons.Where(c => c.User.UserId.Equals(id)).Where(lesson => lesson.Revisions.Any(revision =>
-                (revision.PlannedDate ?? new DateTime()) >= minDate && (revision.PlannedDate ?? new DateTime()) <= maxDate
+            await _context.Lessons.Where(c => c.User!.UserId.Equals(id)).Where(lesson => lesson.Revisions!.Any(revision =>
+                revision.PlannedDate >= minDate && revision.PlannedDate <= maxDate
             )).ForEachAsync(less=>{
-                foreach (Revision rev in less.Revisions)
+                foreach (Revision rev in less.Revisions!)
                 {
-                    nombres[((rev.PlannedDate - minDate) ?? new TimeSpan  ()).Days+1]++;
+                    nombres[(rev.PlannedDate - minDate).Days+1]++;
                 }
             });
             return nombres;
@@ -103,7 +103,7 @@ namespace methodej.Controllers
         [HttpGet("user/{id}/search/{value}")]
         public async Task<ActionResult<IEnumerable<Lesson>>> search(int id,string value)
         {
-            return await _context.Lessons.Where(c => c.User.UserId.Equals(id)).Where(lesson =>
+            return await _context.Lessons.Where(c => c.User!.UserId.Equals(id)).Where(lesson =>
                 lesson.Name != null && lesson.Name.ToLower().Contains(value.ToLower()) ||
                 lesson.Matter != null && lesson.Matter.ToLower().Contains(value.ToLower())
             ).ToListAsync();

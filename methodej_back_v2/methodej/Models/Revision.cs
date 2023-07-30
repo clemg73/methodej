@@ -13,10 +13,10 @@ namespace methodej.Models
 
         [Required]
         [Column("lsn_planned_date", TypeName = "date")]
-        public DateTime? PlannedDate { get; set; }
+        public DateTime PlannedDate { get; set; }
 
         [Column("lsn_realized_date", TypeName = "date")]
-        public DateTime? RealizedDate { get; set; }
+        public DateTime RealizedDate { get; set; }
 
     }
 
