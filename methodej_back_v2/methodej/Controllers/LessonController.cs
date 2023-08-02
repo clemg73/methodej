@@ -169,10 +169,5 @@ namespace methodej.Controllers
 
             return NoContent();
         }
-
-        private bool LessonExists(int id)
-        {
-            return (_context.Lessons?.Any(e => e.LessonId == id)).GetValueOrDefault();
-        }
     }
 }
